@@ -172,6 +172,4 @@ def gaussian_to_xyz(input_file, output_file):
 			f.write( '\t'.join([element, x, y, z]) + '\n' )
 
 	f.close()
-	import os
-	os.system('/fs/europa/g_pc/vmd-1.9 '+output_file+' > /dev/null')
 
