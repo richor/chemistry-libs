@@ -154,11 +154,17 @@ def gaussian_to_xyz(input_file, output_file):
 		print '\n'.join(re.findall('Counterpoise: corrected energy = +(\S+)', contents))
 
 	start = 0
+	# for logfile generated under Windows enviroment:
+	dashtag = '---\n'
+	nspace = 4
+	if '---\n' not in contents:
+		dashtag='---\r\n'
+		nspace=5
 	while True:
 		try:
 			next_coordinates = contents.index('Coordinates (Angstroms)', start)
 		except: break
-		start = contents.index('---\n', next_coordinates)+4
+		start = contents.index(dashtag, next_coordinates)+nspace
 		end = contents.index('\n ---', start)
 		lines = contents[start:end].splitlines()
 		start = end
